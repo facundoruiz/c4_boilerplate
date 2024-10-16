@@ -2,22 +2,32 @@
 
 namespace App\Filters;
 
-use App\Models\MenuManagementModel;
-use App\Models\RolesPermissionsModel;
 use CodeIgniter\Filters\FilterInterface;
+use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\API\ResponseTrait;
+
+use App\Models\MenuManagementModel;
+use App\Models\RolesPermissionsModel;
 use App\Models\Users;
 
 class Authorization implements FilterInterface
 {
-
+	private $menuModel;
+	private $permissionModel;
+	
+	public function __construct()
+	{
+		$this->menuModel = new MenuManagementModel();
+		$this->permissionModel = new RolesPermissionsModel();
+	}
 	public function before(RequestInterface $request, $arguments = null)
 	{
 		helper('custom');
-		$this->menuModel  	= new MenuManagementModel();
-		$this->permissionModel  	= new RolesPermissionsModel();
-		$segment 			= $request->uri->getSegment(2);
+		
+		$segment = $request->getUri()->getSegment(2);
 
 		if ($segment) :
 			$menu 		= $this->menuModel->getMenuByUrl($segment);

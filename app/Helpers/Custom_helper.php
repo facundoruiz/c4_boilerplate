@@ -1,14 +1,13 @@
 <?php
 
+
+use CodeIgniter\CodeIgniter;
 use App\Libraries\Recaptcha;
 use App\Models\Locations\CityModel;
 use App\Models\Locations\CountryModel;
 use App\Models\Locations\StateModel;
 use App\Models\UsersModel;
 use Config\ForeignCharacters;
-
-
-$CI4 = new \App\Controllers\BaseController;
 
 if (!function_exists('register_CI4')) {
     function register_CI4(&$_ci)

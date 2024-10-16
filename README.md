@@ -1,52 +1,68 @@
-# Reactmore Admin Panel With Codeigniter 4 
+# CodeIgniter 4 Application Starter
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/reactmore/morelab) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Freactmore%2Fmorelab&count_bg=%231DC297&title_bg=%23555555&icon=nucleo.svg&icon_color=%23E7E7E7&title=Hits&edge_flat=false)](https://hits.seeyoufarm.com) <a href="https://trakteer.id/react-more" target="_blank"><img id="wse-buttons-preview" src="https://cdn.trakteer.id/images/embed/trbtn-red-6.png" height="40" style="border:0px;height:20px;" alt="Trakteer Saya"></a>
+## What is CodeIgniter?
 
-## Feature 
-1. Auth (Login/Register/Forgot password/ Recaptha)
-2. Dashboard
-3. User Management
-4. Role Management
-5. Permission Management
-6. Multi Lang
-7. File Manager (Used Modal)
-8. Settings
-9. Profile
-10. Language Management
-11. Filter, Secure CRSF, Validation
-12. Google Auth, Gitthub Auth
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
+More information can be found at the [official site](https://codeigniter.com).
 
-## Usage 
+This repository holds a composer-installable app starter.
+It has been built from the
+[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-1. `git clone https://github.com/reactmore/morelab.git`
-2. `composer install`
-3. `php spark db:create` 
-4. `php spark migrate` 
-5. `php spark db:seed Development` || If you update from old version dont seed again
-6. `php spark key:generate`
-7. `Admin Login : Email : reactmorecom@gmail.com || Password : reactmorecom321`
+More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
 
-## Changelog Update 
-- Version 1.0.1 
-    - Initial 
-- Version 1.0.2
-    - Added Github Auth
-    - Added Chart Js on dashboard
-    - Beta Secure API 
-    - Maintenace Page
-    - Fix Some Code from CI 3
-      
-## System Usage
-- Windows 10 
-- Laragon
-- Visual Studio 
-- PHP 8 
-- Codeigniter Version 4.1.8
+You can read the [user guide](https://codeigniter.com/user_guide/)
+corresponding to the latest version of the framework.
 
-## Contributing
-You can contribute on the development of this package by opening new issue(s) when encountering any bugs or issues in this project or by submitting new pull request(s) to contribute directly to the code
+## Installation & updates
 
-## Credit 
-- Framework - Codeigniter 4.*
-- Admin Template - AdminLte
+`composer create-project codeigniter4/appstarter` then `composer update` whenever
+there is a new release of the framework.
 
+When updating, check the release notes to see if there are any changes you might need to apply
+to your `app` folder. The affected files can be copied or merged from
+`vendor/codeigniter4/framework/app`.
+
+## Setup
+
+Copy `env` to `.env` and tailor for your app, specifically the baseURL
+and any database settings.
+
+## Important Change with index.php
+
+`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
+
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
+
+**Please** read the user guide for a better explanation of how CI4 works!
+
+## Repository Management
+
+We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
+
+This repository is a "distribution" one, built by our release preparation script.
+Problems with it can be raised on our forum, or as issues in the main repository.
+
+## Server Requirements
+
+PHP version 8.1 or higher is required, with the following extensions installed:
+
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+
+> [!WARNING]
+> - The end of life date for PHP 7.4 was November 28, 2022.
+> - The end of life date for PHP 8.0 was November 26, 2023.
+> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
+> - The end of life date for PHP 8.1 will be December 31, 2025.
+
+Additionally, make sure that the following extensions are enabled in your PHP:
+
+- json (enabled by default - don't turn it off)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library

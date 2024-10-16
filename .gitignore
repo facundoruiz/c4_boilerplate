@@ -61,6 +61,7 @@ writable/uploads/*
 !writable/uploads/index.html
 
 writable/debugbar/*
+!writable/debugbar/.gitkeep
 
 php_errors.log
 
@@ -83,8 +84,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-/vendor/
-
+vendor/
 
 #-------------------------
 # IDE / Development Files
@@ -124,9 +124,3 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
-/.phpunit.*.cache
-
-ceklissatu-34a6f1eb7d85.json
-ceklissatu-89fb31f8a165.p12
-
-public/uploads

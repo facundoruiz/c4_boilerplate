@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Database\Migrations\Users;
 use App\Models\UsersModel;
 use CodeIgniter\Controller;
@@ -21,7 +20,7 @@ use Psr\Log\LoggerInterface;
  *
  * For security be sure to declare any new methods as protected or private.
  */
-class BaseController extends Controller
+abstract class BaseController extends Controller
 {
     /**
      * Instance of the main Request object.
@@ -35,12 +34,19 @@ class BaseController extends Controller
      * class instantiation. These helpers will be available
      * to all other controllers that extend BaseController.
      *
-     * @var array
+     * @var list<string>
      */
     protected $helpers     = ['cookie', 'date', 'security', 'form', 'menu', 'useraccess', 'custom'];
 
+
     /**
-     * Constructor.
+     * Be sure to declare properties for any property fetch you initialized.
+     * The creation of dynamic property is deprecated in PHP 8.2.
+     */
+    // protected $session;
+
+    /**
+     * @return void
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
@@ -48,20 +54,22 @@ class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-        $this->userModel      = new UsersModel();
-        $this->session         = \Config\Services::session();
-        $this->segment           = \Config\Services::request();
-        $this->db             = \Config\Database::connect();
-        $this->validation     = \Config\Services::validation();
-        $this->encrypter     = \Config\Services::encrypter();
-        register_CI4($this);
-        //lang base url
-        $this->lang_base_url = base_url();
-        // selected_lang
-        $this->selected_lang = selected_lang();
-        $this->general_settings = get_general_settings();
-        $this->agent = $this->request->getUserAgent();
-        //update last seen
-        $this->userModel->update_last_seen();
+
+         // Preload any models, libraries, etc, here.
+         $this->userModel      = new UsersModel();
+         $this->session         = \Config\Services::session();
+         $this->segment           = \Config\Services::request();
+         $this->db             = \Config\Database::connect();
+         $this->validation     = \Config\Services::validation();
+         $this->encrypter     = \Config\Services::encrypter();
+         register_CI4($this);
+         //lang base url
+         $this->lang_base_url = base_url();
+         // selected_lang
+         $this->selected_lang = selected_lang();
+         $this->general_settings = get_general_settings();
+         $this->agent = $this->request->getUserAgent();
+         //update last seen
+         $this->userModel->update_last_seen();
     }
 }

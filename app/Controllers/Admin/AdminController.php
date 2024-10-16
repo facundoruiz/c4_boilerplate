@@ -54,9 +54,9 @@ class AdminController extends BaseController
         $this->data = array();
         if (!empty(user())) {
             $user    = $this->userModel->getUser(user()->username);
-            $segment = $this->request->uri->getSegment(2);
+            $segment = $this->request->getUri()->getSegment(2);
             if ($segment) {
-                $subsegment     = $this->request->uri->getSegment(3);
+                $subsegment     = $this->request->getUri()->getSegment(3);
             } else {
                 $subsegment     = '';
             }
