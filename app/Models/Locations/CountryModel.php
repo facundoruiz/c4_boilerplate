@@ -34,21 +34,22 @@ class CountryModel extends Model
         $paginateData = $this->select('location_countries.*');
 
 
-        $search = trim($this->request->getGet('search'));
+        $search = $this->request->getGet('q',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if (!empty($search)) {
+            $search = trim($this->request->getGet('q'));
             $this->builder()->groupStart()
-                ->like('location_countries.namr', clean_str($search))
+                ->like('location_countries.name', clean_str($search))
                 ->orLike('location_countries.continent_code', clean_str($search))
                 ->groupEnd();
         }
 
-        $status = trim($this->request->getGet('status'));
+        $status = $this->request->getGet('status');
         if ($status != null && ($status == 1 || $status == 0)) {
             $this->builder()->where('location_countries.status', clean_number($status));
         }
 
         $result = $paginateData->asObject()->paginate($show, 'default');
-
+       
         return [
             'country'  =>  $result,
             'pager'     => $this->pager,

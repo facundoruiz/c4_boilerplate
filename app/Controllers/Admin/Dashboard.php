@@ -9,7 +9,7 @@ class Dashboard extends AdminController
 
     public function __construct()
     {
-        $this->analytics = new GoogleAnalytics();
+        //$this->analytics = new GoogleAnalytics();
     }
 
     public function index()

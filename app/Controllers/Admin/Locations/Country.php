@@ -25,7 +25,7 @@ class Country extends AdminController
 
         // Paginations
         $paginate = $this->countryModel->DataPaginations();
-        $data['country'] =  get_cached_data('country_page_' . $paginate['current_page']);
+       // $data['country'] =  get_cached_data('country_page_' . $paginate['current_page']);
         if (empty($data['country'])) {
             $data['country'] =   $paginate['country'];
             set_cache_data('country_page_' . $paginate['current_page'], $data['country']);

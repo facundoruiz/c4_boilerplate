@@ -61,7 +61,9 @@ class ProfileModel extends Model
                 $uploadModel = new UploadModel();
                 $data["avatar"] = $uploadModel->avatar_upload(user()->id, FCPATH . $image->image_default);
                 //delete old
-                delete_file_from_server(user()->avatar);
+                if (!empty(user()->avatar)) {
+                       delete_file_from_server(user()->avatar);
+                }
                 // $data["avatar"] = $image->image_default;
             }
         }

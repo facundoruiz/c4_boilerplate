@@ -170,9 +170,14 @@
                 custom_alert('success', '<?php echo session()->getFlashdata('success'); ?>', false);
             <?php endif; ?>
 
-            <?php if (session()->getFlashdata('error')) : ?>
-                custom_alert('error', '<?php echo session()->getFlashdata('error'); ?>', false);
-            <?php endif; ?>
+            <?php if (session()->getFlashdata('error')) { ?>
+                <?php if (is_array(session()->getFlashdata('error'))) {
+                    print_r(session()->getFlashdata('error'));
+                     }else{ ?>
+
+                    custom_alert('error', '<?php echo session()->getFlashdata('error'); ?>', false);
+                <?PHP } ?>
+            <?php }; ?>
 
         });
     </script>

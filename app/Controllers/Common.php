@@ -22,7 +22,7 @@ class Common extends BaseController
         $this->countryModel = new CountryModel();
         $this->cityModel = new CityModel();
         $this->GeneralSettingModel = new GeneralSettingModel();
-        $this->analytics = new GoogleAnalytics();
+       // $this->analytics = new GoogleAnalytics();
         $this->userModel = new UsersModel();
     }
 

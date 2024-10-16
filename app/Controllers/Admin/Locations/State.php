@@ -32,7 +32,7 @@ class State extends AdminController
         // Paginations
         $paginate = $this->stateModel->DataPaginations();
 
-        $data['state'] =  get_cached_data('state_page_' . $paginate['current_page']);
+       // $data['state'] =  get_cached_data('state_page_' . $paginate['current_page']);
 
         if (empty($data['state'])) {
 

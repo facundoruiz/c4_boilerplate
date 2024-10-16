@@ -117,7 +117,7 @@ if (!function_exists('trans')) {
 if (!function_exists('clean_number')) {
     function clean_number($num)
     {
-        $num = trim($num);
+        $num = trim($num ?? '');
         $num = intval($num);
         return $num;
     }
@@ -154,12 +154,14 @@ if (!function_exists('clean_str')) {
 //remove special characters
 if (!function_exists('remove_special_characters')) {
     function remove_special_characters($str, $is_slug = false)
-    {
-        $str = trim($str);
-        $str = str_replace('#', '', $str);
-        $str = str_replace(';', '', $str);
-        $str = str_replace('!', '', $str);
-        $str = str_replace('"', '', $str);
+    { 
+        if(!is_null($str)){
+
+            $str = trim($str);
+            $str = str_replace('#', '', $str);
+            $str = str_replace(';', '', $str);
+            $str = str_replace('!', '', $str);
+            $str = str_replace('"', '', $str);
         $str = str_replace('$', '', $str);
         $str = str_replace('%', '', $str);
         $str = str_replace('(', '', $str);
@@ -185,7 +187,8 @@ if (!function_exists('remove_special_characters')) {
             $str = str_replace(" ", '-', $str);
             $str = str_replace("'", '', $str);
         }
-        return $str;
+    }
+    return $str;
     }
 }
 
